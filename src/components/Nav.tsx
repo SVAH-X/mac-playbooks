@@ -84,7 +84,7 @@ export default function Nav({ search = "", onSearchChange }: NavProps) {
               Playbooks
             </Link>
             <a
-              href="https://github.com/kelvin-id/mac-playbooks"
+              href="https://github.com/SVAH-X/mac-playbooks"
               target="_blank"
               rel="noopener noreferrer"
               style={{

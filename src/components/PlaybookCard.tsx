@@ -34,9 +34,10 @@ const BADGE_COLORS: Record<string, { bg: string; color: string }> = {
 
 interface PlaybookCardProps {
   playbook: Playbook;
+  isNew?: boolean;
 }
 
-export default function PlaybookCard({ playbook }: PlaybookCardProps) {
+export default function PlaybookCard({ playbook, isNew }: PlaybookCardProps) {
   const [hovered, setHovered] = useState(false);
   const icon = CATEGORY_ICONS[playbook.category] ?? "📄";
   const iconBg = CATEGORY_COLORS[playbook.category] ?? "rgba(255,255,255,0.08)";
@@ -81,25 +82,44 @@ export default function PlaybookCard({ playbook }: PlaybookCardProps) {
           >
             {icon}
           </div>
-          <span
-            style={{
-              display: "inline-flex",
-              alignItems: "center",
-              gap: 5,
-              fontSize: 11,
-              fontWeight: 700,
-              letterSpacing: "0.04em",
-              padding: "4px 10px",
-              borderRadius: 20,
-              background: badge.bg,
-              color: badge.color,
-              border: `1px solid ${badge.color}33`,
-              textTransform: "uppercase",
-              whiteSpace: "nowrap",
-            }}
-          >
-            ⏱ {playbook.time}
-          </span>
+          <div style={{ display: "flex", flexDirection: "column", alignItems: "flex-end", gap: 5 }}>
+            {isNew && (
+              <span
+                style={{
+                  fontSize: 10,
+                  fontWeight: 700,
+                  letterSpacing: "0.06em",
+                  padding: "2px 8px",
+                  borderRadius: 20,
+                  background: "rgba(10,132,255,0.18)",
+                  color: "#0A84FF",
+                  border: "1px solid rgba(10,132,255,0.35)",
+                  textTransform: "uppercase",
+                }}
+              >
+                New
+              </span>
+            )}
+            <span
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 5,
+                fontSize: 11,
+                fontWeight: 700,
+                letterSpacing: "0.04em",
+                padding: "4px 10px",
+                borderRadius: 20,
+                background: badge.bg,
+                color: badge.color,
+                border: `1px solid ${badge.color}33`,
+                textTransform: "uppercase",
+                whiteSpace: "nowrap",
+              }}
+            >
+              ⏱ {playbook.time}
+            </span>
+          </div>
         </div>
 
         {/* Title + desc */}

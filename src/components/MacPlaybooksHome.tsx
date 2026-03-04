@@ -112,7 +112,7 @@ export default function MacPlaybooksHome({ playbooks }: MacPlaybooksHomeProps) {
             fontSize: "clamp(15px, 2vw, 18px)",
             color: "rgba(255,255,255,0.5)",
             maxWidth: 580,
-            margin: "0 auto",
+            margin: "0 auto 28px",
             lineHeight: 1.6,
             fontWeight: 400,
           }}
@@ -121,6 +121,41 @@ export default function MacPlaybooksHome({ playbooks }: MacPlaybooksHomeProps) {
           <br />
           Optimized for M-series · Unified Memory · Metal GPU Acceleration.
         </p>
+
+        {/* Stat chips */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            flexWrap: "wrap",
+            gap: 10,
+          }}
+        >
+          {[
+            { label: "29 Playbooks", icon: "📚" },
+            { label: "8 Categories", icon: "🗂️" },
+            { label: "Apple Silicon", icon: "⚡" },
+            { label: "100% Local", icon: "🔒" },
+          ].map(({ label, icon }) => (
+            <span
+              key={label}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                padding: "5px 13px",
+                borderRadius: 20,
+                background: "rgba(255,255,255,0.04)",
+                border: "1px solid rgba(255,255,255,0.09)",
+                fontSize: 12,
+                fontWeight: 500,
+                color: "rgba(255,255,255,0.5)",
+              }}
+            >
+              {icon} {label}
+            </span>
+          ))}
+        </div>
       </div>
 
       <div
@@ -310,7 +345,7 @@ export default function MacPlaybooksHome({ playbooks }: MacPlaybooksHomeProps) {
                   }}
                 >
                   {whatsNew.map((p) => (
-                    <PlaybookCard key={p.slug} playbook={p} />
+                    <PlaybookCard key={p.slug} playbook={p} isNew />
                   ))}
                 </div>
               </div>
@@ -433,19 +468,108 @@ export default function MacPlaybooksHome({ playbooks }: MacPlaybooksHomeProps) {
             {/* Footer */}
             <div
               style={{
-                padding: "24px 0 32px",
+                padding: "32px 0 40px",
                 borderTop: "1px solid rgba(255,255,255,0.06)",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
               }}
             >
-              <span style={{ fontSize: 12, color: "rgba(255,255,255,0.2)" }}>
-                mac-playbooks · macOS counterpart to NVIDIA DGX Spark Playbooks
-              </span>
-              <span style={{ fontSize: 12, color: "rgba(255,255,255,0.2)" }}>
-                Apache-2.0
-              </span>
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  flexWrap: "wrap",
+                  gap: 24,
+                  marginBottom: 24,
+                }}
+              >
+                <div>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      gap: 8,
+                      marginBottom: 8,
+                    }}
+                  >
+                    <span style={{ fontSize: 18 }}>🍎</span>
+                    <span
+                      style={{
+                        fontSize: 15,
+                        fontWeight: 800,
+                        color: "#fff",
+                        letterSpacing: "-0.02em",
+                      }}
+                    >
+                      mac-playbooks
+                    </span>
+                  </div>
+                  <p
+                    style={{
+                      fontSize: 12,
+                      color: "rgba(255,255,255,0.3)",
+                      maxWidth: 320,
+                      lineHeight: 1.6,
+                    }}
+                  >
+                    macOS counterpart to NVIDIA DGX Spark Playbooks. Step-by-step
+                    AI/ML playbooks for Apple Silicon.
+                  </p>
+                </div>
+                <div style={{ display: "flex", gap: 32 }}>
+                  <div>
+                    <div
+                      style={{
+                        fontSize: 11,
+                        fontWeight: 700,
+                        textTransform: "uppercase",
+                        letterSpacing: "0.08em",
+                        color: "rgba(255,255,255,0.25)",
+                        marginBottom: 10,
+                      }}
+                    >
+                      Resources
+                    </div>
+                    {[
+                      { label: "GitHub", href: "https://github.com/SVAH-X/mac-playbooks" },
+                      { label: "MLX Docs", href: "https://ml-explore.github.io/mlx/" },
+                      { label: "Ollama", href: "https://ollama.com" },
+                      { label: "DGX Spark Playbooks", href: "https://github.com/NVIDIA/dgx-spark-playbooks" },
+                    ].map(({ label, href }) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        style={{
+                          display: "block",
+                          fontSize: 13,
+                          color: "rgba(255,255,255,0.4)",
+                          textDecoration: "none",
+                          marginBottom: 6,
+                        }}
+                      >
+                        {label}
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              </div>
+              <div
+                style={{
+                  paddingTop: 20,
+                  borderTop: "1px solid rgba(255,255,255,0.04)",
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <span style={{ fontSize: 11, color: "rgba(255,255,255,0.18)" }}>
+                  © 2025 mac-playbooks contributors
+                </span>
+                <span style={{ fontSize: 11, color: "rgba(255,255,255,0.18)" }}>
+                  Apache-2.0 License
+                </span>
+              </div>
             </div>
           </>
         )}
